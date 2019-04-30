@@ -127,8 +127,10 @@ sales_by_year_tbl %>%
     ggplot(aes(x = year, y = sales)) +
     
     # Geometries
+    # palette_light()
     geom_col(fill = "#2c3e50") +
     geom_label(aes(label = sales_text)) +
+    # geom_smooth()
     geom_smooth(method = "lm", se = FALSE) +
     
     # Formatting
