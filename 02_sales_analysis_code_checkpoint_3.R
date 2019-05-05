@@ -21,11 +21,11 @@ library(writexl)
 
 ?read_excel()
 
-bikes_tbl <- read_excel(path = "00_data/bike_sales/data_raw/bikes.xlsx")
+bikes_tbl <- read_excel(path = "bikes.xlsx")
 
-bikeshops_tbl <- read_excel("00_data/bike_sales/data_raw/bikeshops.xlsx")
+bikeshops_tbl <- read_excel("bikeshops.xlsx")
 
-orderlines_tbl <- read_excel("00_data/bike_sales/data_raw/orderlines.xlsx")
+orderlines_tbl <- read_excel("orderlines.xlsx")
 
 
 
