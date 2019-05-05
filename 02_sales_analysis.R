@@ -1,4 +1,6 @@
 # DS4B 101-R: R FOR BUSINESS ANALYSIS ----
+# Reference: 
+# https://university.business-science.io/courses/enrolled/541056
 # JUMPSTART ----
 
 # 1.0 Load libraries ----
