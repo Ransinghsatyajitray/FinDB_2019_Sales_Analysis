@@ -48,7 +48,7 @@ bike_orders_excel_tbl
 
 # 4.0 Databases  ----
 
-con <- RSQLite::dbConnect(drv = SQLite(), dbname = "00_data/chinook/Chinook_Sqlite.sqlite")
+con <- RSQLite::dbConnect(drv = SQLite(), dbname = "data/chinook/Chinook_Sqlite.sqlite")
 
 dbListTables(con)
 
