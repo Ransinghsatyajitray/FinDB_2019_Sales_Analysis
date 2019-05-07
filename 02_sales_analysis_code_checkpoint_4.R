@@ -190,7 +190,9 @@ p<-sales_by_year_cat_2_tbl %>%
         y = "Revenue",
         fill = "Product Secondary Category"
     )
-#
+
+# export graph
+
 pdf("ggplot.pdf")
 print(p)
 dev.off()
