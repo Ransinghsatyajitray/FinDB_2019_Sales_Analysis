@@ -23,10 +23,10 @@ library(RSQLite)
 
 bike_orders_csv_tbl <- readr::read_csv("data_wrangled_student/bike_orderlines.csv")
 
-readr::problems(bike_orders_csv_tbl)
+#readr::problems(bike_orders_csv_tbl)
 
-bike_orders_csv_tbl %>%
-    slice(7916)
+#bike_orders_csv_tbl %>%
+#    slice(7916)
 
 readr::read_csv("data_wrangled_student/bike_orderlines.csv", 
                 col_types = cols(order_id = col_double()))
@@ -35,8 +35,8 @@ readr::read_csv("data_wrangled_student/bike_orderlines.csv",
 
 bike_orders_rds_tbl <- readr::read_rds("data_wrangled_student/bike_orderlines.rds")
 
-bike_orders_rds_tbl %>%
-    slice(7916)
+#bike_orders_rds_tbl %>%
+#    slice(7916)
 
 # 3.0 Excel ----
 
@@ -57,3 +57,5 @@ album_tbl <- tbl(con, "Album") %>% collect()
 artist_tbl <- tbl(con, "Artist") %>% collect()
 
 dbDisconnect(con)
+
+
