@@ -16,17 +16,22 @@ tej <- readRDS("../sales_analysis/w2_importing data/tej_d_2017_18.rds")
 #tej2 <- read_tsv("tej_day_price_2017_2018.txt", locale = locale(encoding='big5'))
 #?read_tsv
 glimpse(tej)
+
 tej1<-tej %>% select('證券代碼', '年月日', '收盤價(元)') %>% 
   rename(ID = '證券代碼', date = '年月日', close = '收盤價(元)') %>%      
   mutate(date = date %>% as.character %>% as.Date('%Y%m%d')) %>% 
   mutate(ID = ID %>% as.character) %>% 
   arrange(ID)  
 tej1
+
 # select 3 stocks from tej1: 1101, 2317, 2330;
 tej.3 <- tej1 %>%
   arrange(ID) %>% 
   filter(ID %in% c("1101", "2317", "2330"))
+  #filter(ID %>% str_detect("1101"))
 tej.3
+tail(tej.3)
+
 #
 tej.3 <- tej.3 %>%
   group_by(ID) %>% 
@@ -34,7 +39,7 @@ tej.3 <- tej.3 %>%
             mutate_fun = SMA,           # 選擇簡單移動平均線
             n = 5) %>%                  # 5日簡單移動平均線參數
   rename(ma5 = SMA)  %>% 
-  # 計算10日簡單移動平均線參數
+# 計算10日簡單移動平均線參數
   tq_mutate(select = c(close),
             mutate_fun = SMA,
             n = 10) %>%
