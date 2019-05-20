@@ -1,5 +1,7 @@
 # Reference
 # http://cm.nsysu.edu.tw/~msrc/wp/rmarkdown/tidyquan.html
+rm(list=ls())
+#
 library(tidyquant)
 # read.table() is too slow to import large data 
 # tej <- read.table("tej_day_price_2017_2018_UTF8.txt", header = T, fileEncoding = "UTF-8-BOM")
@@ -57,11 +59,12 @@ tej.3 %>% select(-starts_with("ma")) %>%
 
 
 # import data of TWSE index
-twse <- read_tsv("twse_2017_2018.txt", locale = locale(encoding='big5'))
+twse <- read_tsv("w2_importing data/twse_2017_2018.txt", locale = locale(encoding='big5'))
 twse <- twse %>% 
   select(c(3,4)) %>% 
   rename(date = "年月日", close = '收盤價(元)') %>% 
   mutate(date = date %>% as.character %>% as.Date('%Y%m%d'))
+glimpse(twse)
 #
 mktret <- twse %>% 
   mutate(ret = close/lag(close)-1) %>% 
