@@ -4,7 +4,12 @@ library(tidyquant)
 # read.table() is too slow to import large data 
 # tej <- read.table("tej_day_price_2017_2018_UTF8.txt", header = T, fileEncoding = "UTF-8-BOM")
 # We use read_tsv
-tej <- read_tsv("tej_day_price_2017_2018_UTF8.txt", col_names = TRUE)
+tej <- read_tsv("../sales_analysis/w2_importing data/tej_day_price_2017_2018_UTF8.txt", col_names = TRUE)
+saveRDS(tej, "../sales_analysis/w2_importing data/tej_d_2017_18.rds")
+tej <- readRDS("../sales_analysis/w2_importing data/tej_d_2017_18.rds")
+# we can also save file in Rdata format
+# but the size seems too large here!!!
+#save(tej, file = "../sales_analysis/w2_importing data/tej_d_2017_18.Rdata")
 # If import .txt, then chinese will be garbled text.
 #tej1 <- read_tsv("tej_day_price_2017_2018.txt", col_names = TRUE)
 # You can use the locale to setup to import .txt data;

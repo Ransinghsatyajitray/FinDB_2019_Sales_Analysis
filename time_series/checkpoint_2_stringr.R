@@ -1,14 +1,14 @@
 # DS4B 101-R: R FOR BUSINESS ANALYSIS ----
 # TEXT MANIPULATION ----
-
+rm(list=ls())
 library(tidyverse)
 library(lubridate)
 
-bike_orderlines_tbl <- read_rds("00_data/bike_sales/data_wrangled/bike_orderlines.rds")
+bike_orderlines_tbl <- read_rds("data_wrangled_student/bike_orderlines.rds")
 
 bike_orderlines_tbl
 
-bikes_tbl <- readxl::read_excel("00_data/bike_sales/data_raw/bikes.xlsx")
+bikes_tbl <- readxl::read_excel("bikes.xlsx")
 
 bikes_tbl
 
