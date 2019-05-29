@@ -4,7 +4,7 @@
 library(tidyverse)
 library(tidyquant)
 
-bike_orderlines_tbl <- read_rds("00_data/bike_sales/data_wrangled/bike_orderlines.rds")
+bike_orderlines_tbl <- read_rds("../sales_analysis/data_wrangled_student/bike_orderlines.rds")
 
 bike_orderlines_tbl
 
