@@ -1,5 +1,6 @@
 # DS4B 101-R: R FOR BUSINESS ANALYSIS ----
 # ITERATION WITH PURRR ----
+rm(list=ls())
 
 library(readxl)
 library(tidyverse)
@@ -7,7 +8,7 @@ library(tidyquant)
 library(lubridate)
 library(broom)
 
-bike_orderlines_tbl <- read_rds("00_data/bike_sales/data_wrangled/bike_orderlines.rds")
+bike_orderlines_tbl <- read_rds("../sales_analysis/data_wrangled_student/bike_orderlines.rds")
 
 glimpse(bike_orderlines_tbl)
 
@@ -15,7 +16,7 @@ glimpse(bike_orderlines_tbl)
 
 # 1.0 PRIMER ON PURRR ----
 # Programmatically getting Excel files into R
-excel_paths_tbl <- fs::dir_info("00_data/bike_sales/data_raw/")
+excel_paths_tbl <- fs::dir_info("data/bike_sales/")
 
 paths_chr <- excel_paths_tbl %>%
     pull(path)
@@ -47,8 +48,8 @@ paths_chr %>%
 
 # Reading Excel Sheets
 
-excel_sheets("00_data/bike_sales/data_raw/bikes.xlsx") %>%
-    map(~ read_excel(path = "00_data/bike_sales/data_raw/bikes.xlsx", sheet = .))
+excel_sheets("data/bike_sales/bikes.xlsx") %>%
+    map(~ read_excel(path = "data/bike_sales/bikes.xlsx", sheet = .))
 
 
 # 2.0 MAPPING DATA FRAMES ----
@@ -100,7 +101,7 @@ excel_tbl$data
 excel_tbl$data[[3]]
 
 excel_tbl_unnested <- excel_tbl %>%
-    unnest(data, .id = "ID") 
+    unnest(data, .id = 'ID') 
 
 excel_tbl_unnested
 
@@ -124,7 +125,10 @@ y
 
 !is.na(y) %>% all()
 
-excel_tbl_nested$data[[3]] %>%
+all(!is.na(y))
+#
+
+excel_tbl_nested$data[[1]] %>%
     select_if(~ !is.na(.) %>% all())
 
 excel_tbl_nested
@@ -172,7 +176,7 @@ rolling_avg_3_tbl <- bike_orderlines_tbl %>%
     summarise(
         total_price = sum(total_price)
     ) %>%
-    mutate(rolling_avg_3 = rollmean(total_price, k = 3, na.pad = TRUE, align = "right")) %>%
+    mutate(rolling_avg_3 = rollmean(total_price, k = 3, fill = NA, align = 'right')) %>%
     ungroup() %>%
     
     mutate(category_2 = as_factor(category_2) %>% fct_reorder2(month_end, total_price)) 
